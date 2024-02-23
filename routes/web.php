@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmasController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TokoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,15 @@ Route::middleware('auth')->group(function () {
         // Route::get('/edit', [BukuController::class, 'edit'])->name('edit');
         // Route::put('/', [BukuController::class, 'update'])->name('update');
         // Route::delete('/', [BukuController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/toko')->name('toko.')->group(function () {
+        Route::get('', [TokoController::class, 'index'])->name('index');
+        Route::get('/get', [TokoController::class, 'getData'])->name('get-data');
+        Route::post('/', [TokoController::class, 'store'])->name('create');
+        Route::get('/edit', [TokoController::class, 'edit'])->name('edit');
+        Route::put('/', [TokoController::class, 'update'])->name('update');
+        Route::delete('/', [TokoController::class, 'destroy'])->name('delete');
     });
 });
 
