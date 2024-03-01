@@ -3,7 +3,10 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmasController;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TokoController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,15 +20,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-// Route::get('/', [AuthenticatedSessionController::class, 'create']);
 Route::get('/', [DashboardController::class, 'home'])->middleware('auth');
 
 
@@ -47,14 +41,49 @@ Route::middleware('auth')->group(function () {
         // Route::delete('/', [BukuController::class, 'destroy'])->name('delete');
     });
 
-    Route::prefix('/toko')->name('toko.')->group(function () {
+    // Route::middleware('role:owner')->group(function () {
+    // });
+
+    Route::prefix('/karyawan')->middleware('permission:karyawan')->name('karyawan.')->group(function () {
+        Route::get('', [KaryawanController::class, 'index'])->name('index');
+        Route::get('/get', [KaryawanController::class, 'getData'])->name('get-data');
+        Route::post('/', [KaryawanController::class, 'store'])->name('create');
+        Route::get('/edit', [KaryawanController::class, 'edit'])->name('edit');
+        Route::put('/', [KaryawanController::class, 'update'])->name('update');
+        Route::delete('/', [KaryawanController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/toko')->middleware('permission:toko')->name('toko.')->group(function () {
         Route::get('', [TokoController::class, 'index'])->name('index');
         Route::get('/get', [TokoController::class, 'getData'])->name('get-data');
+        Route::get('/getSelect', [TokoController::class, 'select'])->name('select');
         Route::post('/', [TokoController::class, 'store'])->name('create');
         Route::get('/edit', [TokoController::class, 'edit'])->name('edit');
         Route::put('/', [TokoController::class, 'update'])->name('update');
         Route::delete('/', [TokoController::class, 'destroy'])->name('delete');
     });
+
+    Route::prefix('/role')->middleware('permission:role')->name('role.')->group(function () {
+        Route::get('', [RoleController::class, 'index'])->name('index');
+        Route::get('/get', [RoleController::class, 'getData'])->name('get-data');
+        Route::get('/getSelect', [RoleController::class, 'select'])->name('select');
+        Route::post('/', [RoleController::class, 'store'])->name('create');
+        Route::get('/edit', [RoleController::class, 'edit'])->name('edit');
+        Route::put('/', [RoleController::class, 'update'])->name('update');
+        Route::delete('/', [RoleController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/permission')->middleware('permission:permission')->name('permission.')->group(function () {
+        Route::get('', [PermissionController::class, 'index'])->name('index');
+        Route::get('/get', [PermissionController::class, 'getData'])->name('get-data');
+        Route::get('/getSelect', [PermissionController::class, 'select'])->name('select');
+        Route::post('/', [PermissionController::class, 'store'])->name('create');
+        Route::get('/edit', [PermissionController::class, 'edit'])->name('edit');
+        Route::put('/', [PermissionController::class, 'update'])->name('update');
+        Route::delete('/', [PermissionController::class, 'destroy'])->name('delete');
+    });
+
+
 });
 
 require __DIR__.'/auth.php';

@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class Toko extends Model
 {
     use HasFactory;
@@ -17,7 +16,8 @@ class Toko extends Model
         "npwp",
     ];
 
-    public function Pegawai() {
-        return;
+    public function Karyawan() {
+        return $this->hasMany(KaryawanToko::class, 'toko_id', 'id');
     }
 }
+

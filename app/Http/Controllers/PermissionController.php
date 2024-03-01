@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Toko;
+use App\Models\Permission;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class TokoController extends Controller
+class PermissionController extends Controller
 {
     public function index() {
-        return view('web.sections.dashboard.toko.index');
+        return view('web.sections.dashboard.permission.index');
     }
 
     public function getData(Request $request)
     {
-        $query = Toko::query();
+        $query = Permission::query();
 
         if ($request->search) {
-            $query->where('nama_toko', 'LIKE', "%" . $request->search . "%");
+            $query->where('name', 'LIKE', "%" . $request->search . "%");
         }
 
         $data = $query->orderBy('updated_at', 'desc') // Order by updated_at in descending order
@@ -32,15 +31,14 @@ class TokoController extends Controller
     public function store(Request $request): JsonResponse {
         try {
             $data = $request->validate([
-                "nama_toko" => 'required',
-                "alamat" => 'required',
-                "npwp" => 'nullable',
+                "name" => 'required',
+                "guard_name" => 'required',
             ]);
 
-            // Assuming Toko is your model class
-            $createdToko = Toko::create($data);
+            // Assuming Permission is your model class
+            $createdPermission = Permission::create($data);
 
-            return response()->json($createdToko, 200);
+            return response()->json($createdPermission, 200);
         } catch (\Exception $e) {
             // Handle the exception and return an error response
             return response()->json(['error' => $e->getMessage()], 500);
@@ -50,7 +48,7 @@ class TokoController extends Controller
 
     public function edit(Request $request) {
         $id = $request->id;
-        $kategori_buku = Toko::findOrFail($id);
+        $kategori_buku = Permission::findOrFail($id);
 
         return response()->json($kategori_buku);
     }
@@ -58,18 +56,17 @@ class TokoController extends Controller
     public function update(Request $request) {
         $request->validate([
             "id" => 'required|exists:toko,id',
-            "nama_toko" => 'required',
-            "alamat" => 'required',
-            "npwp" => 'nullable',
+            "name" => 'required',
+            "guard_name" => 'required',
         ]);
 
         try {
-            $Toko = Toko::findOrFail($request->id);
+            $Permission = Permission::findOrFail($request->id);
 
-            $Toko->update([
-                'nama_toko' => $request->nama_toko,
-                'alamat' => $request->alamat,
-                'npwp' => $request->npwp,
+            $Permission->update([
+                'name' => $request->name,
+                "guard_name" => $request->guard_name,
+
             ]);
 
             return response()->json(['message' => 'Data updated successfully']);
@@ -81,7 +78,7 @@ class TokoController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $data = Toko::findOrFail($request->id);
+            $data = Permission::findOrFail($request->id);
             $data->delete();
             return response()->json(['message' => 'Data deleted successfully'], 200);
         } catch (\Exception $e) {
@@ -90,15 +87,15 @@ class TokoController extends Controller
     }
 
     public function select(Request $request) {
-        // Pluck id and nama_toko
-        $query = DB::table('toko');
+        // Pluck id and name
+        $query = DB::table('permissions');
         // $query->where('deleted_at', '='  , NULL);
         // If search parameter is not null, add where clause
         if ($request->search !== null) {
-            $query->where('nama_toko', 'like', '%' . $request->search . '%');
+            $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $result = $query->select('id as id', 'nama_toko as text')->get();
+        $result = $query->select('id as id', 'name as text')->get();
 
 
         return response()->json($result);
