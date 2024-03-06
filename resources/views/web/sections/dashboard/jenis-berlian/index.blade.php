@@ -1,15 +1,15 @@
 
 @extends('web.layout')
 
-@section('title', 'Karyawan')
+@section('title', 'Jenis Berlian')
 
 @section('content')
 <div class="grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
 
     <div class="p-4 sm:col-span-full py-6 bg-white dark:bg-slate-800 shadow rounded-lg">
         <div class="mb-4 text-center">
-            <h2 class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Karyawan</h2>
-            <p class="text-lg max-w-4xl mx-auto font-normal text-gray-500 lg:text-xl dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit quos similique ratione tenetur iusto nemo voluptatum nisi!</p>
+            <h2 class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Jenis Berlian</h2>
+            {{-- <p class="text-lg max-w-4xl mx-auto font-normal text-gray-500 lg:text-xl dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit quos similique ratione tenetur iusto nemo voluptatum nisi!</p> --}}
         </div>
 
         <!-- Main App -->
@@ -29,58 +29,22 @@
                             <span class="sr-only">Close modal</span>
                         </button>
                         <div class="px-6 py-6 lg:px-8 rounded-lg">
-                            <h3 id="titleSimpanData" class="mb-4 text-xl font-medium text-gray-900 dark:text-white" >Tambah Data Karyawan</h3>
+                            <h3 id="titleSimpanData" class="mb-4 text-xl font-medium text-gray-900 dark:text-white" >Tambah Data Jenis Berlian</h3>
                             <form id="createForm" class="space-y-6" action="#" enctype="multipart/form-data"
                                 onsubmit="event.preventDefault(); submitData('create');"
                             >
                                 @csrf
                                 <div class="hidden">
                                     <input type="hidden" id="id" name="id">
+                                    <input type="hidden" id="created_by" name="created_by" >
                                     <input type="hidden" id="_method" name="_method">
-                                    <input type="hidden" id="user_id" name="user_id">
                                 </div>
-                                <div class="grid grid-cols-12 gap-2">
-                                    <div class="col-span-12">
-                                        <label for="nik" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIK</label>
-                                        <div class="flex">
-                                            <input type="text" id="nik" name="nik" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-12">
-                                        <label for="nama_lengkap" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Lengkap</label>
-                                        <div class="flex">
-                                            <input type="text" id="nama_lengkap" name="nama_lengkap" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-6">
-                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                        <div class="flex">
-                                            <input type="text" id="email" name="email" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-6">
-                                        <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NO HP</label>
-                                        <div class="flex">
-                                            <input type="text" id="no_hp" name="no_hp" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-12">
-                                        <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
-                                        <textarea id="alamat" name="alamat" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
-                                    </div>
-                                    <div class="col-span-12">
-                                            <label for="toko_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Toko</label>
-                                            <select required class="toko_id" style="width: 100%; padding-top: 8px; padding-bottom:8px;" name="toko_id">
-                                                <option value="">Pilih Toko</option>
-                                            </select>
-                                    </div>
-                                    <div class="col-span-12">
-                                            <label for="role_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                                            <select required class="role_id" style="width: 100%;padding-top: 8px; padding-bottom:8px;" name="role_id">
-                                            </select>
+                                <div>
+                                    <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Berlian</label>
+                                    <div class="flex">
+                                        <input type="text" id="nama" name="nama" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                     </div>
                                 </div>
-
 
                                 <button type="submit" id="buttonSimpanData" data-modal-hide="createModal" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan Data</button>
                             </form>
@@ -129,20 +93,11 @@
                                 <th scope="col" class="px-6 py-1.5 w-4">
                                     NO
                                 </th>
-                                <th scope="col" class="px-6 py-1.5 w-[15%]">
-                                    NIK
+                                <th scope="col" class="px-6 py-1.5 ">
+                                    Jenis Berlian
                                 </th>
                                 <th scope="col" class="px-6 py-1.5 ">
-                                    Nama Karyawan
-                                </th>
-                                <th scope="col" class="px-6 py-1.5 ">
-                                    Informasi Kontak
-                                </th>
-                                <th scope="col" class="px-6 py-1.5 ">
-                                    Alamat
-                                </th>
-                                <th scope="col" class="px-6 py-1.5 ">
-                                    Role & Toko
+                                    Created By
                                 </th>
                                 <th scope="col" class="px-6 py-1.5  ">
                                     Aksi
@@ -172,13 +127,9 @@
 @endsection
 
 
-@push('pre-css')
-<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-@endpush
 @push('post-js')
 <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+
 <script>
     let createModal;
 
@@ -189,7 +140,7 @@
      *  Read Script Start
      *
      */
-    function fetchData(params, pageUrl = "{{ route('karyawan.get-data') }}") {
+    function fetchData(params, pageUrl = "{{ route('jenis-berlian.get-data') }}") {
         axios.get(pageUrl, {
             params: params
         })
@@ -204,18 +155,8 @@
                 `
                     <tr class="bg-white odd:bg-white even:bg-gray-50 text-center border-b dark:bg-gray-800 dark:border-gray-700">
                         <td>${index++}</td>
-                        <td>${item.nik}</td>
-                        <td>${item.nama_lengkap}</td>
-                        <td>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">${item.email}</span>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">${item.no_hp}</span>
-                        </td>
-                        <td>
-                            ${item.alamat}
-                        </td>
-                        <td>
-                            <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">${item.user_karyawan[0].user.roles[0].name} @ ${item.toko[0].nama_toko}</span>
-                        </td>
+                        <td>${item.nama}</td>
+                        <td>${item.created_by.name}</td>
                         <td class="px-6 py-2.5 text-center">
                             <button data-modal-target="createModal" onClick="edit(${item.id})" data-modal-show="createModal"  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
                                 <span class="relative p-2 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
@@ -293,8 +234,7 @@
         // reset form
         form.reset();
 
-
-        axios.post("{{ route('karyawan.create') }}", formData)
+        axios.post("{{ route('jenis-berlian.create') }}", formData)
             .then(response => {
                 // Handle the response (e.g., show a success message)
                 console.log('data created successfully', response);
@@ -304,7 +244,7 @@
             })
             .catch(error => {
                 // Handle any errors (e.g., show an error message)
-                console.error('Error creating Karyawan', error);
+                console.error('Error creating Jenis Berlian', error);
                 handleAlert('Something Wrong!', error, 'error');
             });
 
@@ -330,7 +270,7 @@
      */
     function edit(id = null) {
         const form = document.getElementById('createForm');
-        const editUrl = "{{ route('karyawan.edit') }}";
+        const editUrl = "{{ route('jenis-berlian.edit') }}";
 
         editModal('Update Data', 'Simpan Perubahan')
 
@@ -340,39 +280,14 @@
                     let inputField = form.querySelector('#id');
                     inputField.value = response.data.id;
 
-                    inputField = form.querySelector('#user_id');
-                    console.log(response.data)
-                    inputField.value = response.data.user_karyawan[0].user_id;
-
                     inputField = form.querySelector('#_method');
                     inputField.value = 'put';
 
-                    inputField = form.querySelector('#nik');
-                    inputField.value = response.data.nik;
+                    inputField = form.querySelector('#nama');
+                    inputField.value = response.data.nama;
 
-                    inputField = form.querySelector('#nama_lengkap');
-                    inputField.value = response.data.nama_lengkap;
-
-                    inputField = form.querySelector('#email');
-                    inputField.value = response.data.email;
-
-                    inputField = form.querySelector('#no_hp');
-                    inputField.value = response.data.no_hp;
-
-                    inputField = form.querySelector('#alamat');
-                    inputField.value = response.data.alamat;
-
-                    // editor.setData(response.data.sinopsis);
-
-                      // Extract toko_id values from kategori_buku_relasi
-                    const tokoId = response.data.toko[0].id;
-                    // Set selected options in Select2 dropdown
-                    $('.toko_id').val(tokoId).trigger('change');
-
-                    const roleId = response.data.user_karyawan[0].user.roles[0].id;
-                    // Set selected options in Select2 dropdown
-                    $('.role_id').val(roleId).trigger('change');
-
+                    inputField = form.querySelector('#created_by');
+                    inputField.value = response.data.created_by;
                 })
                 .catch(error => {
                     // Handle errors if needed
@@ -381,7 +296,6 @@
 
                 });
     }
-
 
 
     /**
@@ -401,13 +315,13 @@
             }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                .post(`{{ route('karyawan.delete') }}`, {
+                .post(`{{ route('jenis-berlian.delete') }}`, {
                     _method: 'DELETE',
                     id: id
                 })
                 .then(response => {
                     // Handle the response (e.g., show a success message)
-                    console.log('Karyawan deleted successfully', response);
+                    console.log('Jenis Berlian deleted successfully', response);
                     fetchData(); // Refresh the table after deletion
                     Swal.fire({
                         title: "Deleted!",
@@ -418,7 +332,7 @@
                 })
                 .catch(error => {
                     // Handle any errors (e.g., show an error message)
-                    console.error('Error deleting Karyawan', error);
+                    console.error('Error deleting Jenis Berlian', error);
                     handleAlert('Something Wrong!', error, 'error');
 
                 });
@@ -446,9 +360,6 @@
 
                 // reset form
                 form.reset();
-                populateSelect('.role_id', "{{ route('role.select') }}", 'Pilih Role');
-                populateSelect('.toko_id', "{{ route('toko.select') }}", 'Pilih Toko');
-
             }
         };
 
@@ -465,6 +376,7 @@
             override: true,
         };
 
+        // Initialize createModal
         createModal = new Modal(modalElem, modalOptions, instanceOptions);
     }
 
@@ -479,35 +391,6 @@
             timerProgressBar: true,
         });
     }
-
-    function populateSelect(selector, route, defaultOptionText = 'Pilih') {
-        $(selector).select2();
-        axios.get(route)
-            .then(function(response) {
-                const data = response.data;
-                $(selector).empty();
-                $(selector).append($('<option>', {
-                    value: '',
-                    text: defaultOptionText,
-                }));
-
-                $.each(data, function(index, item) {
-                    $(selector).append($('<option>', {
-                        value: item.id,
-                        text: item.text
-                    }));
-                });
-
-                $(selector).trigger('change');
-            })
-            .catch(function(error) {
-                console.error('Error fetching data:', error);
-            });
-    }
-
-    populateSelect('.role_id', "{{ route('role.select') }}", 'Pilih Role');
-    populateSelect('.toko_id', "{{ route('toko.select') }}", 'Pilih Toko');
-
 
 </script>
 @endpush

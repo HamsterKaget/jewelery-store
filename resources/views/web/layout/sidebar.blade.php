@@ -179,7 +179,7 @@
 
          </li>
         </ul>
-        <div class="my-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700 h-0"></div>
+        {{-- <div class="my-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700 h-0"></div>
         <ul class="space-y-2 font-medium">
             <span class="text-xs font-bold uppercase text-gray-600">Menu Lainnya</span>
             <li>
@@ -212,7 +212,7 @@
                    <span class="flex-1 ms-3 whitespace-nowrap">Pengaturan Toko</span>
                 </a>
             </li>
-        </ul>
+        </ul> --}}
         <div class="my-4 space-y-2 font-medium border-t border-gray-200 dark:border-gray-700 h-0"></div>
         <ul class="space-y-2 font-medium">
             <span class="text-xs font-bold uppercase text-gray-600">Menu Khusus Owner</span>
@@ -259,6 +259,41 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 6c0 1.7-3.1 3-7 3S5 7.7 5 6m14 0c0-1.7-3.1-3-7-3S5 4.3 5 6m14 0v6M5 6v6m0 0c0 1.7 3.1 3 7 3s7-1.3 7-3M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>
                     </svg>
                     Role
+                </a>
+                </li>
+            </ul>
+            <button type="button" class="flex items-center w-full text-left p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" aria-controls="master_data" data-collapse-toggle="master_data">
+                    <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M17 10v1.1l1 .5.8-.8 1.4 1.4-.8.8.5 1H21v2h-1.1l-.5 1 .8.8-1.4 1.4-.8-.8a4 4 0 0 1-1 .5V20h-2v-1.1a4 4 0 0 1-1-.5l-.8.8-1.4-1.4.8-.8a4 4 0 0 1-.5-1H11v-2h1.1l.5-1-.8-.8 1.4-1.4.8.8a4 4 0 0 1 1-.5V10h2Zm.4 3.6c.4.4.6.8.6 1.4a2 2 0 0 1-3.4 1.4A2 2 0 0 1 16 13c.5 0 1 .2 1.4.6ZM5 8a4 4 0 1 1 8 .7 7 7 0 0 0-3.3 3.2A4 4 0 0 1 5 8Zm4.3 5H7a4 4 0 0 0-4 4v1c0 1.1.9 2 2 2h6.1a7 7 0 0 1-1.8-7Z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Master Data</span>
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+                    </svg>
+            </button>
+            <ul id="master_data" class="space-y-2 py-2 mt-0 bg-gray-100 {{ Route::is(['jenis-emas.index','jenis-barang.index', 'jenis-berlian.index'])? '' : 'hidden' }}">
+                <li>
+                <a href="{{ route('jenis-emas.index') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 {{ Route::is('jenis-emas.index')? 'bg-gray-200 dark:bg-gray-700 border border-dashed border-gray-500' : '' }}">
+                    <svg class="flex-shrink-0 me-1.5 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 6c0 1.7-3.1 3-7 3S5 7.7 5 6m14 0c0-1.7-3.1-3-7-3S5 4.3 5 6m14 0v6M5 6v6m0 0c0 1.7 3.1 3 7 3s7-1.3 7-3M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>
+                    </svg>
+                    Jenis Emas
+                </a>
+                </li>
+                <li>
+                <a href="{{ route('jenis-berlian.index') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 {{ Route::is('jenis-berlian.index')? 'bg-gray-200 dark:bg-gray-700 border border-dashed border-gray-500' : '' }}">
+                    <svg class="flex-shrink-0 me-1.5 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 6c0 1.7-3.1 3-7 3S5 7.7 5 6m14 0c0-1.7-3.1-3-7-3S5 4.3 5 6m14 0v6M5 6v6m0 0c0 1.7 3.1 3 7 3s7-1.3 7-3M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>
+                    </svg>
+                    Jenis Berlian
+                </a>
+                </li>
+                <li>
+                <a href="{{ route('jenis-barang.index') }}" class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-200 dark:text-white dark:hover:bg-gray-700 {{ Route::is('jenis-barang.index')? 'bg-gray-200 dark:bg-gray-700 border border-dashed border-gray-500' : '' }}">
+                    <svg class="flex-shrink-0 me-1.5 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 6c0 1.7-3.1 3-7 3S5 7.7 5 6m14 0c0-1.7-3.1-3-7-3S5 4.3 5 6m14 0v6M5 6v6m0 0c0 1.7 3.1 3 7 3s7-1.3 7-3M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>
+                    </svg>
+                    Jenis Barang
                 </a>
                 </li>
             </ul>

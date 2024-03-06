@@ -16,4 +16,8 @@ class KaryawanToko extends Model
         'toko_id',
     ];
 
+    public function Toko() {
+        return $this->belongsTo(Toko::class, 'toko_id', 'id');
+    }
+
 }

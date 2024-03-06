@@ -20,7 +20,7 @@ class Karyawan extends Model
     ];
 
     // Define the relationship with the User model via the users_karyawan pivot table
-    public function User()
+    public function UserKaryawan()
     {
         return $this->hasMany(UsersKaryawan::class, 'karyawan_id', 'id');
     }
@@ -28,6 +28,6 @@ class Karyawan extends Model
     // Define the relationship with the Toko model via the karyawan_toko pivot table
     public function Toko()
     {
-        return $this->hasMany(KaryawanToko::class, 'karyawan_id', 'id');
+        return $this->belongsToMany(Toko::class, 'karyawan_toko', 'karyawan_id', 'toko_id');
     }
 }

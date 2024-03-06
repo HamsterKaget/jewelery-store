@@ -15,4 +15,8 @@ class UsersKaryawan extends Model
         'user_id',
         'karyawan_id'
     ];
+
+    public function User() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

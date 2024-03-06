@@ -17,7 +17,8 @@ class KaryawanController extends Controller
 
     public function getData(Request $request)
     {
-        $query = Karyawan::query()->with(['User', 'Toko']);
+        $query = Karyawan::query()
+            ->with(['UserKaryawan.User.roles', 'Toko']);
 
         if ($request->search) {
             $query->where('nama_lengkap', 'LIKE', "%" . $request->search . "%");
@@ -63,14 +64,13 @@ class KaryawanController extends Controller
             ]);
 
             // Link Karyawan to User
-            $karyawan->user()->create([
+            $karyawan->UserKaryawan()->create([
                 'user_id' => $user->id
             ]);
 
             // Link Karyawan to Toko using KaryawanToko model
-            $karyawan->toko()->create([
-                'toko_id' => $data['toko_id']
-            ]);
+            $karyawan->Toko()->attach($data['toko_id']); // Use attach to link the Karyawan to the Toko
+
 
             return response()->json($karyawan, 200);
         } catch (\Exception $e) {
@@ -84,27 +84,47 @@ class KaryawanController extends Controller
 
     public function edit(Request $request) {
         $id = $request->id;
-        $kategori_buku = Karyawan::findOrFail($id);
+        $kategori_buku = Karyawan::with(['UserKaryawan.User.roles', 'Toko'])->findOrFail($id);
 
         return response()->json($kategori_buku);
     }
 
     public function update(Request $request) {
         $request->validate([
-            "id" => 'required|exists:toko,id',
-            "nama_toko" => 'required',
-            "alamat" => 'required',
-            "npwp" => 'nullable',
+            "id" => 'required|exists:karyawan,id',
+            "nama_lengkap" => 'required',
+            "nik" => 'required',
+            "email" => 'required|email|unique:users,email,'.$request->user_id, // Ensure email uniqueness except for the current user
+            "no_hp" => 'required',
+            "alamat" => 'nullable',
+            "toko_id" => 'required|exists:toko,id',
+            "role_id" => 'required|exists:roles,id',
         ]);
 
         try {
-            $Toko = Karyawan::findOrFail($request->id);
+            $karyawan = Karyawan::findOrFail($request->id);
+            $user = User::findOrFail($request->user_id); // Get the associated user
 
-            $Toko->update([
-                'nama_toko' => $request->nama_toko,
-                'alamat' => $request->alamat,
-                'npwp' => $request->npwp,
+            // Update the user information
+            $user->update([
+                'name' => $request->nama_lengkap,
+                'email' => $request->email,
             ]);
+
+            // Update the karyawan information
+            $karyawan->update([
+                "nama_lengkap" => $request->nama_lengkap,
+                "nik" => $request->nik,
+                "email" => $request->email,
+                "no_hp" => $request->no_hp,
+                "alamat" => $request->alamat,
+            ]);
+
+            // Sync the toko
+            $karyawan->Toko()->sync([$request->toko_id]);
+
+            // Sync the roles
+            $user->roles()->sync([$request->role_id]);
 
             return response()->json(['message' => 'Data updated successfully']);
         } catch (\Exception $e) {
@@ -112,16 +132,35 @@ class KaryawanController extends Controller
         }
     }
 
+
     public function destroy(Request $request)
     {
         try {
-            $data = Karyawan::findOrFail($request->id);
-            $data->delete();
+            $karyawan = Karyawan::findOrFail($request->id);
+
+            // Delete associated users directly
+            foreach ($karyawan->UserKaryawan as $userKaryawan) {
+                $userId = $userKaryawan->user_id;
+                $user = User::findOrFail($userId);
+                $user->delete();
+            }
+
+            // Delete associated user records
+            $karyawan->UserKaryawan()->delete();
+
+            // Delete associated toko records
+            $karyawan->Toko()->detach();
+
+            // Delete the karyawan record
+            $karyawan->delete();
+
             return response()->json(['message' => 'Data deleted successfully'], 200);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e], 500);
+            return response()->json(['message' => $e->getMessage()], 500);
         }
     }
+
+
 
     public function select(Request $request) {
         // Pluck id and nama_toko

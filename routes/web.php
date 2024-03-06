@@ -3,11 +3,15 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmasController;
+use App\Http\Controllers\JenisBarangController;
+use App\Http\Controllers\JenisBerlianController;
+use App\Http\Controllers\JenisEmasController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\TokoController;
+use App\Models\JenisEmas;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,8 +45,22 @@ Route::middleware('auth')->group(function () {
         // Route::delete('/', [BukuController::class, 'destroy'])->name('delete');
     });
 
-    // Route::middleware('role:owner')->group(function () {
-    // });
+    Route::prefix('/berlian')->name('berlian.')->group(function () {
+        Route::get('', [EmasController::class, 'index'])->name('index');
+        // Route::get('/get', [BukuController::class, 'getData'])->name('get-data');
+        // Route::post('/', [BukuController::class, 'store'])->name('create');
+        // Route::get('/edit', [BukuController::class, 'edit'])->name('edit');
+        // Route::put('/', [BukuController::class, 'update'])->name('update');
+        // Route::delete('/', [BukuController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/penjualan')->name('penjualan.')->group(function () {
+        Route::prefix('/emas')->name('emas.')->group(function () {
+        });
+        Route::prefix('/berlian')->name('berlian.')->group(function () {
+        });
+    });
+
 
     Route::prefix('/karyawan')->middleware('permission:karyawan')->name('karyawan.')->group(function () {
         Route::get('', [KaryawanController::class, 'index'])->name('index');
@@ -61,6 +79,36 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit', [TokoController::class, 'edit'])->name('edit');
         Route::put('/', [TokoController::class, 'update'])->name('update');
         Route::delete('/', [TokoController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/jenis-emas')->middleware('permission:jenis-emas')->name('jenis-emas.')->group(function () {
+        Route::get('', [JenisEmasController::class, 'index'])->name('index');
+        Route::get('/get', [JenisEmasController::class, 'getData'])->name('get-data');
+        Route::get('/getSelect', [JenisEmasController::class, 'select'])->name('select');
+        Route::post('/', [JenisEmasController::class, 'store'])->name('create');
+        Route::get('/edit', [JenisEmasController::class, 'edit'])->name('edit');
+        Route::put('/', [JenisEmasController::class, 'update'])->name('update');
+        Route::delete('/', [JenisEmasController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/jenis-berlian')->middleware('permission:jenis-berlian')->name('jenis-berlian.')->group(function () {
+        Route::get('', [JenisBerlianController::class, 'index'])->name('index');
+        Route::get('/get', [JenisBerlianController::class, 'getData'])->name('get-data');
+        Route::get('/getSelect', [JenisBerlianController::class, 'select'])->name('select');
+        Route::post('/', [JenisBerlianController::class, 'store'])->name('create');
+        Route::get('/edit', [JenisBerlianController::class, 'edit'])->name('edit');
+        Route::put('/', [JenisBerlianController::class, 'update'])->name('update');
+        Route::delete('/', [JenisBerlianController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/jenis-barang')->middleware('permission:jenis-barang')->name('jenis-barang.')->group(function () {
+        Route::get('', [JenisBarangController::class, 'index'])->name('index');
+        Route::get('/get', [JenisBarangController::class, 'getData'])->name('get-data');
+        Route::get('/getSelect', [JenisBarangController::class, 'select'])->name('select');
+        Route::post('/', [JenisBarangController::class, 'store'])->name('create');
+        Route::get('/edit', [JenisBarangController::class, 'edit'])->name('edit');
+        Route::put('/', [JenisBarangController::class, 'update'])->name('update');
+        Route::delete('/', [JenisBarangController::class, 'destroy'])->name('delete');
     });
 
     Route::prefix('/role')->middleware('permission:role')->name('role.')->group(function () {
