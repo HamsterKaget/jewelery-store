@@ -151,7 +151,7 @@
                 <div class="absolute bg-gradient-to-b from-red-600 to-rose-500 opacity-75 inset-0 z-0"></div>
                     <div class="w-full  max-w-md z-10">
 
-                        <div class="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6">Welcome to Library Indonesia</div>
+                        <div class="sm:text-4xl xl:text-5xl font-bold leading-tight mb-6">Welcome to Dashboard WorldGemsCenter</div>
                         <div class="sm:text-sm xl:text-md text-gray-200 font-normal">Welcome back! Please log in to access your account and explore all the features we have to offer. If you don't have an account yet, you can sign up now to join our community and start connecting with like-minded individuals. Let's get started!</div>
                     </div>
                     <!---remove custom style-->
