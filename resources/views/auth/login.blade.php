@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- <title>Login | </title> --}}
     <title>Login | WorldGemsCenter</title>
-    <link rel="shortcut icon" href="/dev/logo-wgc.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ env('APP_URL', 'http://localhost') }}/dev/logo-wgc.png" type="image/x-icon">
     @vite('resources/css/app.css')
     <style>
         /*remove custom style*/
@@ -172,7 +172,7 @@
             <div class="md:flex md:items-center md:justify-center w-full sm:w-auto md:h-full xl:w-2/5 p-8  md:p-10 lg:p-14 sm:rounded-lg md:rounded-none bg-white min-h-screen md:my-auto">
                 <div class="max-w-md w-full space-y-8">
                     <div class="flex justify-center -mb-4">
-                        <img src="/dev/logo-wgc.png" alt="logo wgc" class="max-h-24 w-auto">
+                        <img src="{{ env('APP_URL', 'http://localhost') }}/dev/logo-wgc.png" alt="logo wgc" class="max-h-24 w-auto">
                     </div>
                     <div class="text-center">
                         <h2 class="mt-6 text-3xl font-bold text-gray-900">

@@ -38,11 +38,11 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('/emas')->name('emas.')->group(function () {
         Route::get('', [EmasController::class, 'index'])->name('index');
-        // Route::get('/get', [BukuController::class, 'getData'])->name('get-data');
-        // Route::post('/', [BukuController::class, 'store'])->name('create');
-        // Route::get('/edit', [BukuController::class, 'edit'])->name('edit');
-        // Route::put('/', [BukuController::class, 'update'])->name('update');
-        // Route::delete('/', [BukuController::class, 'destroy'])->name('delete');
+        Route::get('/get', [EmasController::class, 'getData'])->name('get-data');
+        Route::post('/', [EmasController::class, 'store'])->name('create');
+        Route::get('/edit', [EmasController::class, 'edit'])->name('edit');
+        Route::put('/', [EmasController::class, 'update'])->name('update');
+        Route::delete('/', [EmasController::class, 'destroy'])->name('delete');
     });
 
     Route::prefix('/berlian')->name('berlian.')->group(function () {

@@ -137,7 +137,7 @@
             <ol class="relative border-s border-gray-200 dark:border-gray-700">
                 <li class="mb-10 ms-6">
                     <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-2 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                        <img class="rounded-full shadow-lg" src="/dev/logo-wgc.png" alt="Bonnie image"/>
+                        <img class="rounded-full shadow-lg" src="{{ env('APP_URL', 'http://localhost') }}/dev/logo-wgc.png" alt="Bonnie image"/>
                     </span>
                     <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
                         <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">just now</time>
@@ -146,7 +146,7 @@
                 </li>
                 <li class="mb-10 ms-6">
                     <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-2 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                        <img class="rounded-full shadow-lg" src="/dev/logo-wgc.png" alt="Thomas Lean image"/>
+                        <img class="rounded-full shadow-lg" src="{{ env('APP_URL', 'http://localhost') }}/dev/logo-wgc.png" alt="Thomas Lean image"/>
                     </span>
                     <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-700 dark:border-gray-600">
                         <div class="items-center justify-between mb-3 sm:flex">
@@ -158,7 +158,7 @@
                 </li>
                 <li class="ms-6">
                     <span class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-2 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900">
-                        <img class="rounded-full shadow-lg" src="/dev/logo-wgc.png" alt="Jese Leos image"/>
+                        <img class="rounded-full shadow-lg" src="{{ env('APP_URL', 'http://localhost') }}/dev/logo-wgc.png" alt="Jese Leos image"/>
                     </span>
                     <div class="items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:bg-gray-700 dark:border-gray-600">
                         <time class="mb-1 text-xs font-normal text-gray-400 sm:order-last sm:mb-0">1 day ago</time>

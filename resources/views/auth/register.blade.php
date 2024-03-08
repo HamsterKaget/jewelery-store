@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {{-- <title>Register Now |  Library Indonesia </title> --}}
     <title>Register | WorldGemsCenter </title>
-    <link rel="shortcut icon" href="/dev/logo-wgc.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ env('APP_URL', 'http://localhost') }}/dev/logo-wgc.png" type="image/x-icon">
     @vite('resources/css/app.css')
     <style>
         /*remove custom style*/

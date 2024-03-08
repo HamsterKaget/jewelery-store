@@ -89,7 +89,7 @@ class JenisEmasController extends Controller
 
     public function select(Request $request) {
         // Pluck id and nama_toko
-        $query = DB::table('toko');
+        $query = DB::table('jenis_emas');
         // $query->where('deleted_at', '='  , NULL);
         // If search parameter is not null, add where clause
         if ($request->search !== null) {
