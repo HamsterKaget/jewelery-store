@@ -148,7 +148,9 @@ class EmasController extends Controller
                 Storage::disk('public')->delete($emas->thumbnail);
             }
             // Save the new thumbnail
-            $thumbnailPath = $request->file('thumbnail')->storeAs('emas', $emas->kode . '.' . $request->file('thumbnail')->getClientOriginalExtension(), 'public');
+            // $thumbnailPath = $request->file('thumbnail')->storeAs('emas', $emas->kode . '.' . $request->file('thumbnail')->getClientOriginalExtension(), 'public');
+            $thumbnailPath = $request->file('thumbnail')->storeAs('emas', $emas->code . '.' . $request->file('thumbnail')->getClientOriginalExtension(), 'public');
+
         } else {
             // Keep the existing thumbnail
             $thumbnailPath = $emas->thumbnail;
@@ -158,8 +160,8 @@ class EmasController extends Controller
         $tanggalDibuat = Carbon::createFromFormat('d/m/Y', $validatedData['tanggal_dibuat'])->format('Y-m-d');
 
         // Update the Emas instance with validated data
-        $emas->thumbnail = $thumbnailPath;
         $emas->fill($validatedData);
+        $emas->thumbnail = $thumbnailPath;
         $emas->tanggal_dibuat = $tanggalDibuat; // Assign formatted tanggal_dibuat
         $emas->stok = $stok;
         $emas->status_stok = $statusStok; // Assign status_stok value
