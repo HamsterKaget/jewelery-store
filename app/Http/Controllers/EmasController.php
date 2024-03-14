@@ -149,7 +149,7 @@ class EmasController extends Controller
             }
             // Save the new thumbnail
             // $thumbnailPath = $request->file('thumbnail')->storeAs('emas', $emas->kode . '.' . $request->file('thumbnail')->getClientOriginalExtension(), 'public');
-            $thumbnailPath = $request->file('thumbnail')->storeAs('emas', $emas->code . '.' . $request->file('thumbnail')->getClientOriginalExtension(), 'public');
+            $thumbnailPath = $request->file('thumbnail')->storeAs('emas', $emas->kode . '.' . $request->file('thumbnail')->getClientOriginalExtension(), 'public');
 
         } else {
             // Keep the existing thumbnail
