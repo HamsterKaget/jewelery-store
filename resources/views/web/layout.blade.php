@@ -27,7 +27,7 @@
     {{-- @yield('content') --}}
 
     @stack('pre-js')
-    <script src="/js/helper.js"></script>
+    <script src="{{ env('APP_URL', 'http://localhost') }}/js/helper.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
