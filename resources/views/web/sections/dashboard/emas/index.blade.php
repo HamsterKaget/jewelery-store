@@ -305,7 +305,7 @@
     let sinopsisModal;
 
 
-    const assetUrl = @json(asset('storage/'));
+    const assetUrl = "{{ env('APP_STORAGE') }}";
 
     /**
      *
