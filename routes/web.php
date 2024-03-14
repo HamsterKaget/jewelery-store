@@ -7,6 +7,7 @@ use App\Http\Controllers\JenisBarangController;
 use App\Http\Controllers\JenisBerlianController;
 use App\Http\Controllers\JenisEmasController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -59,6 +60,16 @@ Route::middleware('auth')->group(function () {
         });
         Route::prefix('/berlian')->name('berlian.')->group(function () {
         });
+    });
+
+    Route::prefix('/pelanggan')->middleware('permission:pelanggan')->name('pelanggan.')->group(function () {
+        Route::get('', [PelangganController::class, 'index'])->name('index');
+        Route::get('/get', [PelangganController::class, 'getData'])->name('get-data');
+        Route::get('/getSelect', [PelangganController::class, 'select'])->name('select');
+        Route::post('/', [PelangganController::class, 'store'])->name('create');
+        Route::get('/edit', [PelangganController::class, 'edit'])->name('edit');
+        Route::put('/', [PelangganController::class, 'update'])->name('update');
+        Route::delete('/', [PelangganController::class, 'destroy'])->name('delete');
     });
 
 

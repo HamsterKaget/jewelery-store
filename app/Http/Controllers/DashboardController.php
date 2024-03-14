@@ -12,7 +12,7 @@ class DashboardController extends Controller
 {
     public function home(Request $request) {
         // dd(Auth::user()->getRoleNames());
-        if(Auth::user()->hasRole('owner')) {
+        if(Auth::user()->hasRole(['owner', 'karyawan'])) {
             return view('web.sections.dashboard.home.index-owner');
         } else {
             throw new AuthorizationException('Akun anda saat ini tidak memiliki akses ke URL ini ! jika ini merupakan kesalahan harap hubungi atasan anda');
