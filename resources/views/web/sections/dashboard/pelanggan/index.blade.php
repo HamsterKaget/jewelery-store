@@ -39,13 +39,13 @@
                                     <input type="hidden" id="created_by" name="created_by" >
                                     <input type="hidden" id="_method" name="_method">
                                 </div>
-                                <div>
-                                    <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pelanggan</label>
-                                    <div class="flex">
-                                        <input type="text" id="nama" name="nama" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    </div>
-                                </div>
                                 <div class="grid grid-cols-2 gap-2">
+                                    <div class="col-span-2">
+                                        <label for="nama" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pelanggan</label>
+                                        <div class="flex">
+                                            <input type="text" id="nama" name="nama" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        </div>
+                                    </div>
                                     <div>
                                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                         <div class="flex">
@@ -176,6 +176,8 @@
                     <tr class="bg-white odd:bg-white even:bg-gray-50 text-center border-b dark:bg-gray-800 dark:border-gray-700">
                         <td>${index++}</td>
                         <td>${item.nama}</td>
+                        <td>${item.email}</td>
+                        <td>${item.no_hp}</td>
                         <td>${item.created_by.name}</td>
                         <td class="px-6 py-2.5 text-center">
                             <button data-modal-target="createModal" onClick="edit(${item.id})" data-modal-show="createModal"  class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-teal-300 to-lime-300 group-hover:from-teal-300 group-hover:to-lime-300 dark:text-white dark:hover:text-gray-900 focus:ring-4 focus:outline-none focus:ring-lime-200 dark:focus:ring-lime-800">
@@ -306,6 +308,12 @@
                     inputField = form.querySelector('#nama');
                     inputField.value = response.data.nama;
 
+                    inputField = form.querySelector('#email');
+                    inputField.value = response.data.email;
+
+                    inputField = form.querySelector('#no_hp');
+                    inputField.value = response.data.no_hp;
+
                     inputField = form.querySelector('#created_by');
                     inputField.value = response.data.created_by;
                 })
@@ -377,6 +385,15 @@
             onShow: () => {
                 const form = document.getElementById('createForm');
                 const formData = new FormData(form);
+
+                // reset form
+                form.reset();
+            },
+            onHide: () => {
+                const form = document.getElementById('createForm');
+                const formData = new FormData(form);
+                let inputField = form.querySelector('#_method');
+                inputField.value = 'post';
 
                 // reset form
                 form.reset();

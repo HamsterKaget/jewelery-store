@@ -1,7 +1,7 @@
 
 @extends('web.layout')
 
-@section('title', 'Emas')
+@section('title', 'Penjualan Emas')
 
 
 @section('content')
@@ -9,7 +9,7 @@
 
     <div class="p-4 sm:col-span-full py-6 bg-white dark:bg-slate-800 shadow rounded-lg">
         <div class="mb-4 text-center">
-            <h2 class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Emas</h2>
+            <h2 class="text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white">Penjualan Emas</h2>
             {{-- <p class="text-lg max-w-4xl mx-auto font-normal text-gray-500 lg:text-xl dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odit quos similique ratione tenetur iusto nemo voluptatum nisi!</p> --}}
         </div>
 
@@ -29,7 +29,7 @@
                             <span class="sr-only">Close modal</span>
                         </button>
                         <div class="px-6 py-6 lg:px-8 rounded-lg">
-                            <h3 id="titleSimpanData" class="mb-4 text-xl font-medium text-gray-900 dark:text-white" >Tambah Data Emas</h3>
+                            <h3 id="titleSimpanData" class="mb-4 text-xl font-medium text-gray-900 dark:text-white" >Tambah Data Penjualan Emas</h3>
                             <form id="createForm" class="space-y-6" action="#" enctype="multipart/form-data"
                                 onsubmit="event.preventDefault(); submitData('create');"
                             >
@@ -39,34 +39,7 @@
                                     <input type="hidden" id="_method" name="_method">
                                 </div>
                                 <div>
-                                    <label for="toko_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Toko</label>
-                                    <select class="toko_id" style="width: 100%" name="toko_id">
-
-                                    </select>
-                                </div>
-                                <div class="grid grid-cols-12 gap-2">
-                                    <div class="col-span-6">
-                                        <label for="jenis_emas_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Emas</label>
-                                        <select class="jenis_emas_id" style="width: 100%" name="jenis_emas_id">
-
-                                        </select>
-                                    </div>
-                                    <div class="col-span-6">
-                                        <label for="jenis_barang_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis Barang</label>
-                                        <select class="jenis_barang_id" style="width: 100%" name="jenis_barang_id">
-
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div>
-                                    <label for="nama_produk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
-                                    <div class="flex">
-                                        <input type="text" id="nama_produk" name="nama_produk" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                </div>
-                                <div>
-                                    <label for="tanggal_dibuat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Dibuat / Dibeli / Ditambahkan</label>
+                                    <label for="tanggal_pembelian" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi</label>
 
                                     <div class="relative w-full">
                                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -74,79 +47,23 @@
                                             <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
                                             </svg>
                                         </div>
-                                        <input id="tanggal_dibuat" name="tanggal_dibuat" datepicker  datepicker-autohide datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
-                                    </div>
-
-                                </div>
-
-                                <div class="grid grid-cols-2 gap-x-2 gap-y-3">
-                                    <div>
-                                        <label for="berat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Berat Emas (*gr)</label>
-                                        <div class="flex">
-                                            <input type="number" id="berat" name="berat" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="tukeran" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tukeran</label>
-                                        <div class="flex">
-                                            <input type="number" id="tukeran" name="tukeran" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="kadar" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kadar</label>
-                                        <div class="flex">
-                                            <input type="number" id="kadar" name="kadar" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="persentase" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Persentase</label>
-                                        <div class="flex">
-                                            <input type="number" id="persentase" name="persentase" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="harga_beli" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga Beli</label>
-                                        <div class="flex">
-                                            <input type="number" id="harga_beli" name="harga_beli" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <label for="harga_jual" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Harga Jual</label>
-                                        <div class="flex">
-                                            <input type="number" id="harga_jual" name="harga_jual" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-2">
-                                        <label for="stok" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jumlah Stok</label>
-                                        <div class="flex">
-                                            <input type="number" min="0" id="stok" name="stok" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        </div>
-                                    </div>
-                                    <div class="col-span-2">
-                                        <div class="flex items-center mb-4">
-                                            <input id="EL_HAU" name="EL_HAU" type="checkbox" value="y" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                            <label for="EL_HAU" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Include EL HAU ?</label>
-                                        </div>
+                                        <input id="tanggal_pembelian" name="tanggal_pembelian" datepicker  datepicker-autohide datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
                                     </div>
                                 </div>
-                                <div class="flex flex-col items-center justify-center w-full">
-                                    <label for="thumbnail" class="block text-sm font-medium text-gray-900 dark:text-white text-left self-start">Thumbnail / Foto</label>
+                                <div>
+                                    <label for="emas_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk / Emas</label>
+                                    <select class="emas_id" style="width: 100%" name="emas_id">
 
-                                    <label for="thumbnail" class="flex flex-col items-center justify-center w-full h-64 mt-3 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                        <div class="flex flex-col items-center justify-center pt-2 pb-6">
-                                            <div id="filePreview" class="hidden border-b-2 border-dashed border-gray-600">
-                                                <img id="previewThumbnail" src="" alt="File Preview" class="max-h-32 w-auto h-full" />
-                                            </div>
-                                            <svg class="w-8 h-8 mb-4 mt-2 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                            </svg>
-                                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                            <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG, JPEG or WEBP (*max 2MB)</p>
-                                        </div>
-                                        <input id="thumbnail" name="thumbnail" type="file" accept="image/*" class="hidden" />
-                                    </label>
-
+                                    </select>
                                 </div>
+
+                                <div>
+                                    <label for="nama_produk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
+                                    <div class="flex">
+                                        <input type="text" id="nama_produk" name="nama_produk" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    </div>
+                                </div>
+
 
                                 <button type="submit" id="buttonSimpanData" data-modal-hide="createModal" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan Data</button>
                             </form>
@@ -220,26 +137,22 @@
                         <thead class="text-xs border broder-gray-200 text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 rounded-lg">
                             <tr class="text-center">
                                 <th scope="col" class="px-6 py-1.5">
-                                    Kode
+                                    No Transaksi
                                 </th>
                                 <th scope="col" class="px-6 py-1.5 ">
-                                    Toko,
-                                    Kategori Emas & Barang
+                                    Tanggal Transaksi
                                 </th>
                                 <th scope="col" class="px-6 py-1.5 ">
+                                    Pelanggan
+                                </th>
+                                <th scope="col" class="px-6 py-1.5">
                                     Informasi Produk
                                 </th>
                                 <th scope="col" class="px-6 py-1.5 ">
-                                    Detail Produk
+                                    Metode Pembayaran
                                 </th>
                                 <th scope="col" class="px-6 py-1.5 w-[15%]">
-                                    Tanggal Stok - Terjual
-                                </th>
-                                <th scope="col" class="px-6 py-1.5 ">
-                                    Harga Beli - Jual
-                                </th>
-                                <th scope="col" class="px-6 py-1.5 ">
-                                    Inventaris
+                                    Karyawan
                                 </th>
                                 <th scope="col" class="px-6 py-1.5  ">
                                     Aksi
@@ -288,7 +201,7 @@
      *  Read Script Start
      *
      */
-    function fetchData(params, pageUrl = "{{ route('emas.get-data') }}") {
+    function fetchData(params, pageUrl = "{{ route('penjualan.emas.get-data') }}") {
         axios.get(pageUrl, {
             params: params
         })
@@ -297,9 +210,6 @@
 
                 const tbody = document.querySelector('table tbody');
                 tbody.innerHTML = '';
-                // <td>
-                //             <img class="h-auto max-w-xl mx-auto rounded-lg shadow-xl dark:shadow-gray-800 w-32 my-2.5" src="${assetUrl+'/'+item.thumbnail}" alt="Thumbnail description">
-                //         </td>
                 let index = 1;
                 const rowTemplate = (item) =>
                 `
@@ -314,7 +224,7 @@
                                         ${item.toko.nama_toko}
                                 </span>
                                 <span class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-                                        ${item.jenis_barang.nama} - ${item.jenis_emas.nama}
+                                        ${item.jenis_barang.nama} - ${item.jenis_penjualan.emas.nama}
                                 </span>
                             </div>
                         </td>
@@ -468,7 +378,7 @@
         // let sinopsis = editor.getData();
         // formData.append('sinopsis', sinopsis);
 
-        axios.post("{{ route('emas.create') }}", formData)
+        axios.post("{{ route('penjualan.emas.create') }}", formData)
             .then(response => {
                 // Handle the response (e.g., show a success message)
                 console.log('data created successfully', response);
@@ -478,7 +388,7 @@
             })
             .catch(error => {
                 // Handle any errors (e.g., show an error message)
-                console.error('Error creating Emas', error);
+                console.error('Error creating Penjualan Emas', error);
                 handleAlert('Something Wrong!', error.response.data.error, 'error');
             });
 
@@ -504,7 +414,7 @@
      */
     function edit(id = null) {
         const form = document.getElementById('createForm');
-        const editUrl = "{{ route('emas.edit') }}";
+        const editUrl = "{{ route('penjualan.emas.edit') }}";
 
         editModal('Update Data', 'Simpan Perubahan')
 
@@ -526,41 +436,10 @@
 
                     inputField.value = formattedDate;
 
-                    inputField = form.querySelector('#berat');
-                    inputField.value = response.data.berat;
 
-                    inputField = form.querySelector('#tukeran');
-                    inputField.value = response.data.tukeran;
-
-                    inputField = form.querySelector('#kadar');
-                    inputField.value = response.data.kadar;
-
-                    inputField = form.querySelector('#persentase');
-                    inputField.value = response.data.persentase;
-
-                    inputField = form.querySelector('#harga_beli');
-                    inputField.value = response.data.harga_beli;
-
-                    inputField = form.querySelector('#harga_jual');
-                    inputField.value = response.data.harga_jual;
-
-                    inputField = form.querySelector('#stok');
-                    inputField.value = response.data.stok;
-
-                    inputField = form.querySelector('#EL_HAU');
-                    if (response.data.EL_HAU === 'y') {
-                        inputField.checked = true;
-                    } else {
-                        inputField.checked = false;
-                    }
-
-
-                    previewThumbnail.src = assetUrl+'/'+response.data.thumbnail;
-                    filePreview.classList.remove('hidden');
-
-                    $('.toko_id').val(response.data.toko_id).trigger('change');
-                    $('.jenis_emas_id').val(response.data.jenis_emas_id).trigger('change');
-                    $('.jenis_barang_id').val(response.data.jenis_barang_id).trigger('change');
+                    // $('.toko_id').val(response.data.toko_id).trigger('change');
+                    // $('.jenis_emas_id').val(response.data.jenis_emas_id).trigger('change');
+                    // $('.jenis_barang_id').val(response.data.jenis_barang_id).trigger('change');
 
 
                       // Extract jenis_emas_id values from kategori_buku_relasi
@@ -582,10 +461,7 @@
      *
      */
     function handleDeleteAction(id) {
-        // resetModalPosition('deleteModal');
-        // const deleteModal = document.getElementById('deleteModal'); // Get the delete modal element
-        // const confirmButton = deleteModal.querySelector('.data-delete-confirm');
-        Swal.fire({
+       Swal.fire({
             title: "Yakin ingin menghapus data?",
             text: "Anda tidak bisa mengembalikan data yang akan anda hapus!",
             icon: "warning",
@@ -596,13 +472,13 @@
             }).then((result) => {
             if (result.isConfirmed) {
                 axios
-                .post(`{{ route('emas.delete') }}`, {
+                .post(`{{ route('penjualan.emas.delete') }}`, {
                     _method: 'DELETE',
                     id: id
                 })
                 .then(response => {
                     // Handle the response (e.g., show a success message)
-                    console.log('Emas deleted successfully', response);
+                    console.log('Penjualan Emas deleted successfully', response);
                     fetchData(); // Refresh the table after deletion
                     Swal.fire({
                         title: "Deleted!",
@@ -613,7 +489,7 @@
                 })
                 .catch(error => {
                     // Handle any errors (e.g., show an error message)
-                    console.error('Error deleting Emas', error);
+                    console.error('Error deleting Penjualan Emas', error);
                     handleAlert('Something Wrong!', error, 'error');
 
                 });
@@ -665,23 +541,6 @@
             override: true,
         };
 
-        fileInput.addEventListener('change', function (e) {
-            const file = e.target.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-
-                reader.onload = function (e) {
-                    previewThumbnail.src = e.target.result;
-                };
-
-                reader.readAsDataURL(file);
-                filePreview.classList.remove('hidden');
-            } else {
-                filePreview.classList.add('hidden');
-            }
-        });
-
         // Initialize createModal
         createModal = new Modal(modalElem, modalOptions, instanceOptions);
     }
@@ -723,9 +582,7 @@
             });
     }
 
-    populateSelect('.jenis_emas_id', "{{ route('jenis-emas.select') }}", 'Pilih Jenis Emas');
-    populateSelect('.jenis_barang_id', "{{ route('jenis-barang.select') }}", 'Pilih Jenis Barang');
-    populateSelect('.toko_id', "{{ route('toko.select') }}", 'Pilih Toko');
+    populateSelect('.emas_id', "{{ route('emas.select') }}", 'Pilih Produk');
 
     const rupiah = (number)=>{
         return new Intl.NumberFormat("id-ID", {

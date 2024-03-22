@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pelanggan;
+
+use App\Models\PenjualanEmas;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class PelangganController extends Controller
+class PenjualanEmasController extends Controller
 {
     public function index() {
-        return view('web.sections.dashboard.pelanggan.index');
+        return view('web.sections.dashboard.penjualan-emas.index');
     }
 
     public function getData(Request $request)
     {
-        $query = Pelanggan::query()->with('CreatedBy');
+        $query = PenjualanEmas::query()->with('CreatedBy');
 
         if ($request->search) {
             $query->where('nama', 'LIKE', "%" . $request->search . "%");
@@ -38,10 +39,10 @@ class PelangganController extends Controller
             ]);
 
             $data['created_by'] = Auth::user()->id;
-            // Assuming Pelanggan is your model class
-            $createdPelanggan = Pelanggan::create($data);
+            // Assuming PenjualanEmas is your model class
+            $createdPenjualanEmas = PenjualanEmas::create($data);
 
-            return response()->json($createdPelanggan, 200);
+            return response()->json($createdPenjualanEmas, 200);
         } catch (\Exception $e) {
             // Handle the exception and return an error response
             return response()->json(['error' => $e->getMessage()], 500);
@@ -51,7 +52,7 @@ class PelangganController extends Controller
 
     public function edit(Request $request) {
         $id = $request->id;
-        $kategori_buku = Pelanggan::findOrFail($id);
+        $kategori_buku = PenjualanEmas::findOrFail($id);
 
         return response()->json($kategori_buku);
     }
@@ -67,9 +68,9 @@ class PelangganController extends Controller
 
 
         try {
-            $Pelanggan = Pelanggan::findOrFail($request->id);
+            $PenjualanEmas = PenjualanEmas::findOrFail($request->id);
 
-            $Pelanggan->update([
+            $PenjualanEmas->update([
                 'nama' => $request->nama,
                 'email' => $request->email,
                 'no_hp' => $request->no_hp,
@@ -85,28 +86,11 @@ class PelangganController extends Controller
     public function destroy(Request $request)
     {
         try {
-            $data = Pelanggan::findOrFail($request->id);
+            $data = PenjualanEmas::findOrFail($request->id);
             $data->delete();
             return response()->json(['message' => 'Data deleted successfully'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e], 500);
         }
     }
-
-    public function select(Request $request) {
-        // Pluck id and nama_toko
-        $query = DB::table('jenis_emas');
-        // $query->where('deleted_at', '='  , NULL);
-        // If search parameter is not null, add where clause
-        if ($request->search !== null) {
-            $query->where('nama', 'like', '%' . $request->search . '%');
-        }
-
-        $result = $query->select('id as id', 'nama as text')->get();
-
-
-        return response()->json($result);
-    }
-
-
 }

@@ -15,6 +15,11 @@ class Pelanggan extends Model
         'nama',
         'email',
         'no_hp',
+        'created_by',
     ];
+
+    public function CreatedBy() {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
 
 }

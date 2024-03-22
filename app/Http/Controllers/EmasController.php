@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -188,4 +189,21 @@ class EmasController extends Controller
             return response()->json(['message' => $e], 500);
         }
     }
+
+    public function select(Request $request) {
+        // Pluck id, kode, and nama_produk
+        $query = DB::table('emas')
+                    ->where('stok', '>', 0);
+
+        if ($request->search !== null) {
+            $query->where('kode', 'like', '%' . $request->search . '%')
+                  ->orWhere('nama_produk', 'like', '%' . $request->search . '%');
+        }
+
+        $result = $query->select('id', DB::raw("CONCAT(kode, ' - ', nama_produk) AS text"))->get();
+
+        return response()->json($result);
+    }
+
+
 }

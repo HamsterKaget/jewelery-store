@@ -8,6 +8,7 @@ use App\Http\Controllers\JenisBerlianController;
 use App\Http\Controllers\JenisEmasController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\PenjualanEmasController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('/emas')->name('emas.')->group(function () {
         Route::get('', [EmasController::class, 'index'])->name('index');
         Route::get('/get', [EmasController::class, 'getData'])->name('get-data');
+        Route::get('/getSelect', [EmasController::class, 'select'])->name('select');
         Route::post('/', [EmasController::class, 'store'])->name('create');
         Route::get('/edit', [EmasController::class, 'edit'])->name('edit');
         Route::put('/', [EmasController::class, 'update'])->name('update');
@@ -57,6 +59,13 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('/penjualan')->name('penjualan.')->group(function () {
         Route::prefix('/emas')->name('emas.')->group(function () {
+            Route::get('', [PenjualanEmasController::class, 'index'])->name('index');
+            Route::get('/get', [PenjualanEmasController::class, 'getData'])->name('get-data');
+            Route::post('/', [PenjualanEmasController::class, 'store'])->name('create');
+            Route::get('/edit', [PenjualanEmasController::class, 'edit'])->name('edit');
+            Route::put('/', [PenjualanEmasController::class, 'update'])->name('update');
+            Route::delete('/', [PenjualanEmasController::class, 'destroy'])->name('delete');
+
         });
         Route::prefix('/berlian')->name('berlian.')->group(function () {
         });
