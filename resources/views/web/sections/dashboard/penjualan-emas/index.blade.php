@@ -19,7 +19,7 @@
             <div id="createModal" tabindex="-1" aria-hidden="true"
                 class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] rounded-lg"
                 >
-                <div class="relative w-full max-w-xl max-h-full">
+                <div class="relative w-full max-w-4xl max-h-full">
                     <!-- Modal content -->
                     <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                         <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="createModal" data-modal-target="createModal" onclick="createModal.hide()">
@@ -34,35 +34,113 @@
                                 onsubmit="event.preventDefault(); submitData('create');"
                             >
                                 @csrf
-                                <div class="hidden">
-                                    <input type="hidden" id="id" name="id">
-                                    <input type="hidden" id="_method" name="_method">
-                                </div>
-                                <div>
-                                    <label for="tanggal_pembelian" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi</label>
-
-                                    <div class="relative w-full">
-                                        <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                            </svg>
+                                <div class="grid grid-cols-2">
+                                    <div class="grid gap-y-2 border-r-2 border-dashed border-gray-200 pr-3 pb-2 mr-3">
+                                        <div class="hidden">
+                                            <input type="hidden" id="id" name="id">
+                                            <input type="hidden" id="_method" name="_method">
                                         </div>
-                                        <input id="tanggal_pembelian" name="tanggal_pembelian" datepicker  datepicker-autohide datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                                        <div>
+                                            <label for="nama_karyawan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Karyawan</label>
+                                            <div class="flex">
+                                                <input type="hidden" value="{{ Auth::user()->id }}" id="karyawan_id" name="karyawan_id" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                <input type="text" name="nama_karyawan" id="nama_karyawan" aria-label="disabled input 2" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="{{ Auth::user()->name }}" disabled readonly>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="toko_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Toko</label>
+                                            <div class="flex">
+                                                <input type="text" id="toko_id" name="toko_id" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <label for="no_transaksi" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">No Transaksi</label>
+                                            <div class="flex">
+                                                <input type="text" name="no_transaksi" id="no_transaksi" aria-label="disabled input 2" class="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500" value="NPJ-000001" disabled readonly>
+                                            </div>
+                                        </div>
+                                        <div class="border-dashed border-gray-200 border-b-2 pb-4">
+                                            <label for="tanggal_pembelian" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Transaksi</label>
+                                            <div class="relative w-full">
+                                                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
+                                                    </svg>
+                                                </div>
+                                                <input id="tanggal_pembelian" name="tanggal_pembelian" datepicker  datepicker-autohide datepicker-buttons datepicker-autoselect-today type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date">
+                                            </div>
+                                        </div>
+
+                                        <div>
+                                            <label for="jenis_pelanggan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tipe Pelanggan</label>
+                                            <select id="jenis_pelanggan" onchange="toggleMenuVisibility()" name="jenis_pelanggan" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                              <option selected>Pilih Tipe Pelanggan</option>
+                                              <option value="member">Member</option>
+                                              <option value="non-member">Non Member</option>
+                                            </select>
+                                        </div>
+
+                                        <div id="menu-member" class="hidden">
+                                            <div>
+                                                <label for="pelanggan_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Pelanggan</label>
+                                                <div class="flex">
+                                                    <input type="text" id="pelanggan_id" name="pelanggan_id" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="menu-non-member" class="hidden">
+
+                                            <div>
+                                                <label for="nama_pelanggan" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Pelanggan</label>
+                                                <div class="flex">
+                                                    <input type="text" id="nama_pelanggan" name="nama_pelanggan" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                </div>
+                                            </div>
+                                            <div class="grid grid-cols-2 gap-x-2 mt-2">
+                                                <div>
+                                                    <label for="no_hp" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NO HP</label>
+                                                    <div class="flex">
+                                                        <input type="text" id="no_hp" name="no_hp" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                                    <div class="flex">
+                                                        <input type="text" id="email" name="email" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <label for="alamat" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat</label>
+                                                <div class="flex">
+                                                    <input type="text" id="alamat" name="alamat" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="flex items-center pt-2">
+                                                    <input id="checkmark" name="checkmark" type="checkbox" value="y" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="checkmark" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Simpan Sebagai Member ?</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="flex flex-col min-h-full ">
+                                            <div class="flex-1 border-b-2 border-gray-200 border-dashed">
+                                                <div>
+                                                    <label for="emas_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Pilih Emas</label>
+                                                    <div class="flex">
+                                                        <input type="text" id="emas_id" name="emas_id" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex">
+                                                <span class="text-sm">Total Harga</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div>
-                                    <label for="emas_id" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Produk / Emas</label>
-                                    <select class="emas_id" style="width: 100%" name="emas_id">
 
-                                    </select>
-                                </div>
-
-                                <div>
-                                    <label for="nama_produk" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Produk</label>
-                                    <div class="flex">
-                                        <input type="text" id="nama_produk" name="nama_produk" class="rounded-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                    </div>
-                                </div>
 
 
                                 <button type="submit" id="buttonSimpanData" data-modal-hide="createModal" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Simpan Data</button>
@@ -513,10 +591,10 @@
             backdropClasses: 'bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40',
             closable: true,
             onShow: () => {
-                previewThumbnail.src = '';
-                filePreview.classList.add('hidden');
+                // previewThumbnail.src = '';
+                // filePreview.classList.add('hidden');
 
-                $('.jenis_emas_id').val('').trigger('change');
+                // $('.jenis_emas_id').val('').trigger('change');
 
                 const form = document.getElementById('createForm');
                 const formData = new FormData(form);
@@ -591,6 +669,19 @@
         }).format(number);
     }
 
+    function toggleMenuVisibility() {
+        var jenis_pelanggan = document.getElementById("jenis_pelanggan");
+        var menu_member = document.getElementById("menu-member");
+        var menu_non_member = document.getElementById("menu-non-member");
+
+        if (jenis_pelanggan.value === "member") {
+            menu_member.classList.remove("hidden");
+            menu_non_member.classList.add("hidden");
+        } else if (jenis_pelanggan.value === "non-member") {
+            menu_member.classList.add("hidden");
+            menu_non_member.classList.remove("hidden");
+        }
+    }
 </script>
 @endpush
 

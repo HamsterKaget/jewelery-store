@@ -7,6 +7,7 @@ use App\Http\Controllers\JenisBarangController;
 use App\Http\Controllers\JenisBerlianController;
 use App\Http\Controllers\JenisEmasController;
 use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\PenjualanEmasController;
 use App\Http\Controllers\PermissionController;
@@ -149,6 +150,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit', [PermissionController::class, 'edit'])->name('edit');
         Route::put('/', [PermissionController::class, 'update'])->name('update');
         Route::delete('/', [PermissionController::class, 'destroy'])->name('delete');
+    });
+
+    Route::prefix('/payment')->middleware('permission:payment')->name('payment.')->group(function () {
+        Route::get('/getSelect', [PaymentController::class, 'select'])->name('select');
     });
 
 

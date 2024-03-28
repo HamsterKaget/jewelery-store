@@ -13,6 +13,7 @@ class PenjualanEmas extends Model
 
     protected $fillable = [
         'emas_id',
+        'toko_id',
         'karyawan_id',
         'pelanggan_id',
         'no_transaksi',

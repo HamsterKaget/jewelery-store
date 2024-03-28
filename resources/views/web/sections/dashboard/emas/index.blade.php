@@ -734,6 +734,8 @@
         }).format(number);
     }
 
+
+
 </script>
 @endpush
 
